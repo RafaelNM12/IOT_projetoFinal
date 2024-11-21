@@ -123,21 +123,8 @@ void setup(){
     request->send(200, "text/plain", "OK");
   });
   
-  // Envie uma solicitação GET para o valor do slide
-  server.on("/slider", HTTP_GET, [] (AsyncWebServerRequest *request) {
-    String inputMessage;
-    if (request->hasParam(PARAM_INPUT_2)) {
-      inputMessage = request->getParam(PARAM_INPUT_2)->value();
-      timerSliderValue = inputMessage;
-    }
-    else {
-      inputMessage = "No message sent";
-    }
-    Serial.println(inputMessage);
-    request->send(200, "text/plain", "OK");
-  });
+  
 
-  // Rota para ligar o motor quando o cronômetro terminar
   server.on("/startMotor", HTTP_GET, [] (AsyncWebServerRequest *request) {
     motorActive = true;  // deixa o motor ativo
     Serial.println("Starting stepper motor...");
@@ -152,9 +139,9 @@ void loop() {
   // se o motor ativar, ira girar o que foi definido
   if (motorActive) {
     Serial.println("Motor stepping...");
-    myStepper.step(360);  // gira o motor uma volta inteira(pode ser modificado se quiser)
+    myStepper.step(380);  // gira o motor uma volta inteira(pode ser modificado se quiser)
     delay(1000);  // espera 1 segundo antes de parar ou continuar
-    myStepper.step(-360);
+    myStepper.step(-380);
     delay(1000); // o mesmo só que inverso
     motorActive = false; //desliga o motor
   }
