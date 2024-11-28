@@ -25,7 +25,6 @@ const char* PARAM_INPUT_2 = "value";
 
 const int output = 2;
 
-String timerSliderValue = "10";
 bool motorActive = false;  // para saber se o motor esta ativo ou não
 
 // Crie o objeto AsyncWebServer na porta 80
